@@ -1,5 +1,6 @@
 import founderBg from "../../assets/founder-bg.png";
 import founderImage from "../../assets/founder.png";
+import Reveal from "../../common/Reveal";
 
 const paragraphs = [
   "Over The Years, I Have Explored And Immersed Myself In Different Forms Of Creativity — From Paintings And Handmade Décor To Various Artistic And Design Works That Helped Me Discover And Refine My Own Style, Ideas, And Craft. Every Experience Taught Me Something Valuable, Shaping The Artist And Person I Am Today. What Made Me Truly Fall In Love With Texture Art Painting Is The Freedom It Gives Me To Bring Together All These Creative Experiences Onto A Single Canvas. Through Textures, Layers, Colors, And Forms, I Am Able To Express Emotions, Stories, And Ideas In A Way That Feels Deeply Personal And Meaningful.",
@@ -15,7 +16,7 @@ const Founder = () => {
       style={{ backgroundImage: `url(${founderBg})` }}
     >
       <div className="mx-auto grid max-w-7xl items-start gap-10 px-6 py-8 md:grid-cols-[minmax(0,1fr)_minmax(0,1.9fr)]">
-        <div className="relative overflow-hidden rounded-2xl">
+        <Reveal direction="left" className="relative overflow-hidden rounded-2xl">
           <img
             src={founderImage}
             alt="Nasheeda K T, founder"
@@ -24,9 +25,9 @@ const Founder = () => {
           <span className="absolute bottom-4 right-3 rounded-full bg-white px-6 py-1.5 font-sans text-xs font-medium text-primary">
             Nasheeda K T
           </span>
-        </div>
+        </Reveal>
 
-        <div>
+        <Reveal direction="right" delay={0.15}>
           <h2 className="font-roman text-4xl font-light leading-tight tracking-tight md:text-5xl">
             Meet The Founder
             <br />
@@ -37,7 +38,7 @@ const Founder = () => {
               <p key={p}>{p}</p>
             ))}
           </div>
-        </div>
+        </Reveal>
       </div>
     </section>
   );

@@ -1,4 +1,5 @@
 import { motion } from "motion/react";
+import Reveal from "../../common/Reveal";
 
 interface Testimonial {
   id: number;
@@ -69,7 +70,7 @@ const Card = ({ item, index }: { item: Testimonial; index: number }) => {
 const Testimonials = () => {
   return (
     <section id="testimonials" className="overflow-hidden bg-white">
-      <div className="mx-auto max-w-7xl px-6 pt-8 font-sans">
+      <Reveal direction="left" className="mx-auto max-w-7xl px-6 pt-8 font-sans">
         <p className="text-sm text-gray-800">Testimonials</p>
         <h2 className="mt-2 font-roman text-3xl font-light tracking-tight text-primary">
           Real Voices. Creative Journeys.
@@ -80,15 +81,15 @@ const Testimonials = () => {
           Creativity, Sparked Joy, And Created Unforgettable Artistic
           Experiences.
         </p>
-      </div>
+      </Reveal>
 
-      <div className="mx-auto max-w-7xl px-6 py-12">
+      <Reveal direction="right" delay={0.15} className="mx-auto max-w-7xl px-6 py-12">
         <div className="grid gap-5 sm:grid-cols-2 lg:grid-cols-4">
           {initialTestimonials.map((item, i) => (
             <Card key={item.id} item={item} index={i} />
           ))}
         </div>
-      </div>
+      </Reveal>
     </section>
   );
 };

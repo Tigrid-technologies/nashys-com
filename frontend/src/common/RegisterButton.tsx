@@ -1,3 +1,4 @@
+import { Link } from "react-router-dom";
 import { FiArrowUpRight } from "react-icons/fi";
 
 type Variant = "primary" | "light" | "cream";
@@ -20,18 +21,18 @@ const styles: Record<Variant, { button: string; icon: string }> = {
 interface Props {
   label?: string;
   variant?: Variant;
-  href?: string;
+  to?: string;
 }
 
 const RegisterButton = ({
   label = "Register Now",
   variant = "primary",
-  href = "#register",
+  to = "/contact",
 }: Props) => {
   const s = styles[variant];
   return (
-    <a
-      href={href}
+    <Link
+      to={to}
       className={`group inline-flex items-center gap-3 rounded-full py-1.5 pl-5 pr-1.5 font-sans text-xs font-medium tracking-wide transition-all duration-300 hover:-translate-y-0.5 ${s.button}`}
     >
       {label}
@@ -40,7 +41,7 @@ const RegisterButton = ({
       >
         <FiArrowUpRight />
       </span>
-    </a>
+    </Link>
   );
 };
 

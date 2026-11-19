@@ -2,6 +2,7 @@ import { useState } from "react";
 import { FiMinus, FiPlus } from "react-icons/fi";
 import faqImage from "../../assets/faq-card.jpg";
 import RegisterButton from "../../common/RegisterButton";
+import Reveal from "../../common/Reveal";
 
 interface FaqItem {
   question: string;
@@ -43,7 +44,7 @@ const FAQ = () => {
   return (
     <section id="faq" className="bg-white">
       <div className="mx-auto grid max-w-7xl items-start gap-10 px-6 py-8 md:grid-cols-[1.4fr_1fr]">
-        <div className="font-sans pb-10">
+        <Reveal direction="left" className="font-sans pb-10">
           <p className="text-sm text-gray-800">FAQ</p>
           <h2 className="mt-2 font-roman text-3xl font-light tracking-tight text-primary">
             Everything Made Clear
@@ -93,9 +94,13 @@ const FAQ = () => {
               );
             })}
           </ul>
-        </div>
+        </Reveal>
 
-        <div className="h-full rounded-2xl bg-primary p-4 text-white shadow-2xl shadow-primary/25">
+        <Reveal
+          direction="right"
+          delay={0.15}
+          className="h-full rounded-2xl bg-primary p-4 text-white shadow-2xl shadow-primary/25"
+        >
           <img
             src={faqImage}
             alt="Texture art close-up"
@@ -112,7 +117,7 @@ const FAQ = () => {
           <div className="mt-5">
             <RegisterButton variant="cream" />
           </div>
-        </div>
+        </Reveal>
       </div>
     </section>
   );

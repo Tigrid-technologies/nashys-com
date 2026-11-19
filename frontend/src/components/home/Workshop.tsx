@@ -1,6 +1,7 @@
 import { useState } from "react";
 import { FiPlus, FiX } from "react-icons/fi";
 import RegisterButton from "../../common/RegisterButton";
+import Reveal from "../../common/Reveal";
 
 interface WorkshopItem {
   title: string;
@@ -45,9 +46,9 @@ const Workshop = () => {
   const [open, setOpen] = useState<number | null>(0);
 
   return (
-    <section id="workshop" className="bg-secondary">
+    <section id="workshop" className="scroll-mt-20 bg-secondary">
       <div className="mx-auto grid max-w-7xl items-center gap-10 px-6 py-10 md:grid-cols-2">
-        <div className="font-sans">
+        <Reveal direction="left" className="font-sans">
           <h2 className="font-roman text-4xl font-light leading-tight tracking-tight text-primary md:text-5xl">
             Explore Art. Experience Creativity. Create Memories.
           </h2>
@@ -66,9 +67,10 @@ const Workshop = () => {
           <div className="mt-6">
             <RegisterButton variant="primary" />
           </div>
-        </div>
+        </Reveal>
 
-        <ul className="space-y-3">
+        <Reveal direction="right" delay={0.15}>
+          <ul className="space-y-3">
           {items.map((item, i) => {
             const isOpen = open === i;
             return (
@@ -111,7 +113,8 @@ const Workshop = () => {
               </li>
             );
           })}
-        </ul>
+          </ul>
+        </Reveal>
       </div>
     </section>
   );

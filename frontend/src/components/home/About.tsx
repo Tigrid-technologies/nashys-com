@@ -1,6 +1,7 @@
 import aboutImage from "../../assets/about-image.png";
 import sealImage from "../../assets/seal.png";
 import CountUp from "../../common/CountUp";
+import Reveal from "../../common/Reveal";
 
 const paragraphs = [
   "Texture Art Painting Is A Beautiful And Expressive Art Form That Allows Us To Create Stunning Pieces Using Textures, Layers, Patterns, And Creativity — And Today, Learning It Online Is Easier And More Interactive Than Ever Before.",
@@ -19,7 +20,7 @@ const About = () => {
   return (
     <section id="about" className="bg-white">
       <div className="mx-auto grid max-w-7xl items-start gap-10 px-6 py-10 md:grid-cols-2">
-        <div>
+        <Reveal direction="left">
           <h2 className="font-roman text-4xl font-light tracking-tight text-primary md:text-5xl">
             Learn Art Like Never Before!
           </h2>
@@ -35,10 +36,10 @@ const About = () => {
               className="absolute left-0 top-30 w-[40%] -translate-y-1/2 drop-shadow-xl"
             />
           </div>
-        </div>
+        </Reveal>
 
-        <div className=" md:pl-6">
-          <p className="font-sans text-sm text-gray-800">About</p>
+        <Reveal direction="right" delay={0.15} className=" md:pl-6">
+          <p className="font-sans text-md text-gray-800">About</p>
           <h3 className="mt-3 font-roman text-2xl text-primary">
             Welcome To Our Workshop
           </h3>
@@ -47,11 +48,11 @@ const About = () => {
               <p key={p}>{p}</p>
             ))}
           </div>
-        </div>
+        </Reveal>
       </div>
 
       {/* Stats */}
-      <div className="mx-auto max-w-7xl px-6 pb-10">
+      <Reveal direction="up" delay={0.1} className="mx-auto max-w-7xl px-6 pb-10">
         <ul className="grid grid-cols-3">
           {stats.map((s, i) => (
             <li
@@ -72,7 +73,7 @@ const About = () => {
             </li>
           ))}
         </ul>
-      </div>
+      </Reveal>
     </section>
   );
 };

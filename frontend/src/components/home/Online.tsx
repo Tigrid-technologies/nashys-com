@@ -1,13 +1,14 @@
 import { FaPlay } from "react-icons/fa6";
 import onlineImage from "../../assets/online-image.png";
 import RegisterButton from "../../common/RegisterButton";
+import Reveal from "../../common/Reveal";
 
 const Online = () => {
   return (
     <section id="online" className="bg-secondary">
       <div className="mx-auto grid max-w-7xl items-center gap-10 px-6 py-10 md:grid-cols-2">
-        <div className="font-sans">
-          <p className="text-sm text-gray-800">Real Stories. Real Learning.</p>
+        <Reveal direction="left" className="font-sans">
+          <p className="text-md text-gray-800">Real Stories. Real Learning.</p>
           <h2 className="mt-5 font-roman text-4xl font-light leading-tight tracking-tight text-primary md:text-5xl">
             Get A Feel For Our
             <br />
@@ -21,9 +22,13 @@ const Online = () => {
           <div className="mt-7">
             <RegisterButton variant="primary" />
           </div>
-        </div>
+        </Reveal>
 
-        <div className="relative overflow-hidden rounded-2xl shadow-2xl shadow-primary/20 ring-1 ring-primary/10">
+        <Reveal
+          direction="right"
+          delay={0.15}
+          className="relative overflow-hidden rounded-2xl shadow-2xl shadow-primary/20 ring-1 ring-primary/10"
+        >
           <img
             src={onlineImage}
             alt="Students at an online texture art workshop"
@@ -38,7 +43,7 @@ const Online = () => {
             </span>
             Watch Showreel
           </button>
-        </div>
+        </Reveal>
       </div>
     </section>
   );

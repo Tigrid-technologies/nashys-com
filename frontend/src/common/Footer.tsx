@@ -1,3 +1,4 @@
+import { Link } from "react-router-dom";
 import { FiPhone, FiMail } from "react-icons/fi";
 import {
   FaFacebookF,
@@ -13,7 +14,12 @@ const socials = [
   { label: "YouTube", href: "#", Icon: FaYoutube },
 ];
 
-const links = ["Contact Us", "Privacy Policy", "Refund Policy", "Terms & Conditions"];
+const links = [
+  { label: "Contact Us", to: "/contact" },
+  { label: "Privacy Policy", to: "/privacy-policy" },
+  { label: "Refund Policy", to: "/refund-policy" },
+  { label: "Terms & Conditions", to: "/terms-and-conditions" },
+];
 
 const Footer = () => {
   return (
@@ -90,11 +96,17 @@ const Footer = () => {
             </div>
 
             <ul className="flex flex-wrap gap-5 text-[14px] text-secondary/90">
-              {links.map((l) => (
-                <li key={l}>
-                  <a href="#" className="transition-opacity hover:opacity-70">
-                    {l}
-                  </a>
+              {links.map(({ label, to }) => (
+                <li key={label}>
+                  {to === "#" ? (
+                    <a href={to} className="transition-opacity hover:opacity-70">
+                      {label}
+                    </a>
+                  ) : (
+                    <Link to={to} className="transition-opacity hover:opacity-70">
+                      {label}
+                    </Link>
+                  )}
                 </li>
               ))}
             </ul>

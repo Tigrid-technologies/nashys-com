@@ -1,4 +1,5 @@
 import { FiArrowUpRight } from "react-icons/fi";
+import Reveal from "../../common/Reveal";
 import works1 from "../../assets/works1.jpg";
 import works2 from "../../assets/works2.jpg";
 import works3 from "../../assets/works3.jpg";
@@ -37,21 +38,31 @@ const Tile = ({ item, className }: { item: WorkItem; className: string }) => (
 
 const Works = () => {
   return (
-    <section id="works" className="bg-white">
+    <section id="works" className="scroll-mt-20 bg-white">
       <div className="mx-auto max-w-7xl px-6 py-8">
-        <p className="font-sans text-xs text-gray-800">Creative</p>
-        <h2 className="mt-2 font-roman text-3xl font-light tracking-tight text-primary">
-          Let Our Work Do The Talking.
-        </h2>
+        <Reveal direction="left">
+          <p className="font-sans text-md text-gray-800">Creative</p>
+          <h2 className="mt-2 font-roman text-3xl font-light tracking-tight text-primary">
+            Let Our Work Do The Talking.
+          </h2>
+        </Reveal>
 
         <div className="mt-5 grid gap-2">
-          <div className="grid grid-cols-1 gap-2 md:grid-cols-[375fr_445fr]">
+          <Reveal
+            direction="right"
+            delay={0.1}
+            className="grid grid-cols-1 gap-2 md:grid-cols-[375fr_445fr]"
+          >
             {topRow.map((item) => (
               <Tile key={item.id} item={item} className="h-64 md:h-80" />
             ))}
-          </div>
+          </Reveal>
 
-          <div className="grid grid-cols-1 gap-2 md:grid-cols-[314fr_355fr_143fr]">
+          <Reveal
+            direction="left"
+            delay={0.2}
+            className="grid grid-cols-1 gap-2 md:grid-cols-[314fr_355fr_143fr]"
+          >
             {bottomRow.map((item) => (
               <Tile key={item.id} item={item} className="h-56 md:h-64" />
             ))}
@@ -68,7 +79,7 @@ const Works = () => {
                 View All
               </span>
             </a>
-          </div>
+          </Reveal>
         </div>
       </div>
     </section>

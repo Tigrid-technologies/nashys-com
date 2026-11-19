@@ -1,5 +1,7 @@
 import { FaPlay } from "react-icons/fa6";
 import RegisterButton from "../../common/RegisterButton";
+import Reveal from "../../common/Reveal";
+import image from "../../assets/hero-image.png";
 
 const ShowreelButton = () => (
   <button
@@ -18,7 +20,7 @@ const Hero = () => {
     <section className="bg-secondary h-screen">
       <div className="mx-auto grid max-w-7xl items-start gap-6 px-6 py-12 md:grid-cols-[1fr_1.2fr]">
         {/* Left: headline */}
-        <div className="mt-10">
+        <Reveal direction="left" className="mt-10">
           <h1 className="font-roman text-5xl font-light leading-[1.05] tracking-tight text-primary md:text-7xl">
             Crafted Textures.
             <br />
@@ -30,10 +32,14 @@ const Hero = () => {
           <div className="mt-7">
             <RegisterButton variant="primary" />
           </div>
-        </div>
+        </Reveal>
 
         {/* Right: workshop card */}
-        <div className="rounded-2xl bg-gradient-to-br from-primary via-primary to-[#4a0b0b] p-6 text-white shadow-2xl shadow-primary/30 ring-1 ring-white/10">
+        <Reveal
+          direction="right"
+          delay={0.15}
+          className="rounded-2xl bg-gradient-to-br from-primary via-primary to-[#4a0b0b] p-6 text-white shadow-2xl shadow-primary/30 ring-1 ring-white/10"
+        >
           <div className="grid gap-5 md:grid-cols-[1fr_1.6fr]">
             <div className="font-sans">
               <p className="text-[11px] uppercase leading-snug tracking-[0.18em] text-white/70">
@@ -53,7 +59,7 @@ const Hero = () => {
             </div>
 
             <div className="relative min-h-[230px] w-full aspect-video overflow-hidden rounded-xl bg-black/40 shadow-lg ring-1 ring-white/10">
-              {/* Showreel video/poster goes here once available */}
+              <img src={image} alt="Play" className="align-top" />
               <ShowreelButton />
             </div>
           </div>
@@ -77,7 +83,7 @@ const Hero = () => {
           <div className="mt-6">
             <RegisterButton variant="light" />
           </div>
-        </div>
+        </Reveal>
       </div>
     </section>
   );
