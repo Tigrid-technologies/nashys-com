@@ -1,17 +1,25 @@
+import { FiPhone, FiMail } from "react-icons/fi";
+import {
+  FaFacebookF,
+  FaInstagram,
+  FaLinkedinIn,
+  FaYoutube,
+} from "react-icons/fa6";
+
 const socials = [
-  { label: "Facebook", href: "#", text: "f" },
-  { label: "Instagram", href: "#", text: "◎" },
-  { label: "LinkedIn", href: "#", text: "in" },
-  { label: "YouTube", href: "#", text: "▶" },
+  { label: "Facebook", href: "#", Icon: FaFacebookF },
+  { label: "Instagram", href: "#", Icon: FaInstagram },
+  { label: "LinkedIn", href: "#", Icon: FaLinkedinIn },
+  { label: "YouTube", href: "#", Icon: FaYoutube },
 ];
 
 const links = ["Contact Us", "Privacy Policy", "Refund Policy", "Terms & Conditions"];
 
 const Footer = () => {
   return (
-    <footer className="w-full font-montserrat">
+    <footer className="w-full font-sans">
       <div className="bg-primary text-secondary">
-        <div className="mx-auto grid max-w-7xl gap-10 px-6 py-8 md:grid-cols-2">
+        <div className="mx-auto grid max-w-7xl gap-10 px-6 py-10 md:grid-cols-2">
           {/* Left: logo, socials, contact */}
           <div className="flex flex-col justify-between gap-8">
             <div>
@@ -20,15 +28,15 @@ const Footer = () => {
                 alt="Nashys & Co."
                 className="h-9 w-auto brightness-0 invert"
               />
-              <ul className="mt-4 flex gap-3">
-                {socials.map((s) => (
-                  <li key={s.label}>
+              <ul className="mt-5 flex gap-3">
+                {socials.map(({ label, href, Icon }) => (
+                  <li key={label}>
                     <a
-                      href={s.href}
-                      aria-label={s.label}
-                      className="flex h-7 w-7 items-center justify-center rounded-full bg-secondary text-xs font-bold text-primary hover:opacity-80"
+                      href={href}
+                      aria-label={label}
+                      className="flex h-8 w-8 items-center justify-center rounded-full border border-secondary/40 text-sm text-secondary transition-all duration-300 hover:-translate-y-0.5 hover:bg-secondary hover:text-primary"
                     >
-                      {s.text}
+                      <Icon />
                     </a>
                   </li>
                 ))}
@@ -36,11 +44,19 @@ const Footer = () => {
             </div>
 
             <div className="flex flex-wrap items-center gap-8 text-sm">
-              <a href="tel:+917994519952" className="flex items-center gap-2">
-                <span aria-hidden>📞</span>+91 7994519952
+              <a
+                href="tel:+917994519952"
+                className="flex items-center gap-2 transition-opacity hover:opacity-80"
+              >
+                <FiPhone className="text-base" />
+                +91 7994519952
               </a>
-              <a href="mailto:nashysandco@gmail.com" className="flex items-center gap-2">
-                <span aria-hidden>✉️</span>nashysandco@gmail.com
+              <a
+                href="mailto:nashysandco@gmail.com"
+                className="flex items-center gap-2 transition-opacity hover:opacity-80"
+              >
+                <FiMail className="text-base" />
+                nashysandco@gmail.com
               </a>
             </div>
           </div>
@@ -48,33 +64,35 @@ const Footer = () => {
           {/* Right: newsletter, links */}
           <div className="flex flex-col justify-between gap-8 md:items-end">
             <div className="w-full max-w-md">
-              <h3 className="font-cormorant text-lg font-semibold">Our Little Secrets</h3>
-              <p className="mt-1 text-[10px] leading-tight">
-                Never Miss A Moment! Stay Updated On Our Latest Programs, Workshops &amp;
-                Activities.
+              <h3 className="font-roman text-2xl font-light tracking-wide">
+                Our Little Secrets
+              </h3>
+              <p className="mt-2 text-[14px] leading-snug text-secondary/80">
+                Never Miss A Moment! Stay Updated On Our Latest Programs,
+                Workshops &amp; Activities.
               </p>
               <form
-                className="mt-3 flex gap-2"
+                className="mt-4 flex gap-2"
                 onSubmit={(e) => e.preventDefault()}
               >
                 <input
                   type="email"
                   placeholder="Enter Your Email"
-                  className="min-w-0 flex-1 rounded-md bg-white px-3 py-1.5 text-[10px] text-black outline-none"
+                  className="min-w-0 flex-1 rounded-md bg-white px-3 py-2 text-[14px] text-black outline-none ring-2 ring-transparent transition focus:ring-tertiary"
                 />
                 <button
                   type="submit"
-                  className="cursor-pointer rounded-md bg-secondary px-5 py-1.5 text-[10px] font-medium text-primary hover:opacity-90"
+                  className="cursor-pointer rounded-md bg-secondary px-5 py-2 text-[14px] font-medium text-primary transition hover:bg-tertiary"
                 >
                   Subscribe
                 </button>
               </form>
             </div>
 
-            <ul className="flex flex-wrap gap-5 text-[11px]">
+            <ul className="flex flex-wrap gap-5 text-[14px] text-secondary/90">
               {links.map((l) => (
                 <li key={l}>
-                  <a href="#" className="hover:underline">
+                  <a href="#" className="transition-opacity hover:opacity-70">
                     {l}
                   </a>
                 </li>
@@ -84,8 +102,8 @@ const Footer = () => {
         </div>
       </div>
 
-      <div className="bg-secondary py-3 text-center text-[10px] text-primary">
-        © All Rights Reserved | Designed And Developed By TIGRID
+      <div className="bg-secondary py-3 text-center text-[12px] tracking-wide text-primary">
+        © All Rights Reserved | Designed And Developed By TiGRID
       </div>
     </footer>
   );

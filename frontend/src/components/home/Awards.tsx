@@ -1,4 +1,8 @@
 import { useRef } from "react";
+import { FiArrowLeft, FiArrowRight } from "react-icons/fi";
+import award1 from "../../assets/award1.png";
+import award2 from "../../assets/award2.png";
+import award3 from "../../assets/award3.png";
 
 interface AwardItem {
   id: number;
@@ -6,10 +10,12 @@ interface AwardItem {
   alt: string;
 }
 
-const awards: AwardItem[] = Array.from({ length: 6 }, (_, i) => ({
-  id: i + 1,
-  alt: `Award ${i + 1}`,
-}));
+// Static images for now; replace with data from the API later
+const awards: AwardItem[] = [
+  { id: 1, src: award1, alt: "Award 1" },
+  { id: 2, src: award2, alt: "Award 2" },
+  { id: 3, src: award3, alt: "Award 3" },
+];
 
 const Awards = () => {
   const trackRef = useRef<HTMLDivElement>(null);
@@ -22,14 +28,14 @@ const Awards = () => {
 
   return (
     <section id="awards" className="bg-white">
-      <div className="mx-auto max-w-7xl px-6 py-8 font-montserrat">
+      <div className="mx-auto max-w-7xl px-6 py-8 font-sans">
         <p className="text-sm text-gray-800">Awards Achievement</p>
-        <h2 className="mt-2 font-cormorant text-3xl text-primary">
+        <h2 className="mt-2 font-roman text-3xl font-light tracking-tight text-primary">
           Milestones &amp; Achievements
         </h2>
-        <p className="mt-3 max-w-xl text-[11px] leading-relaxed text-gray-700">
+        <p className="mt-3  text-[14px] leading-relaxed text-gray-700">
           Every Award Represents Our Dedication, Creativity, And Commitment To
-          Excellence. These Achievements Reflect The Trust We’ve Earned And The
+          Excellence.<br /> These Achievements Reflect The Trust We’ve Earned And The
           Milestones We’ve Reached Along The Way.
         </p>
 
@@ -40,7 +46,7 @@ const Awards = () => {
           {awards.map((award) => (
             <div
               key={award.id}
-              className="flex h-44 shrink-0 basis-full snap-start items-center justify-center overflow-hidden rounded-lg border border-primary/60 bg-white p-3 md:basis-[calc((100%-2rem)/3)]"
+              className="flex h-44 shrink-0 basis-full snap-start items-center justify-center overflow-hidden rounded-2xl border border-primary/30 bg-white p-3 shadow-sm transition-all duration-300 hover:-translate-y-1 hover:border-primary/60 hover:shadow-xl md:basis-[calc((100%-2rem)/3)]"
             >
               {award.src && (
                 <img
@@ -58,17 +64,17 @@ const Awards = () => {
             type="button"
             aria-label="Previous"
             onClick={() => scroll(-1)}
-            className="flex h-8 w-8 cursor-pointer items-center justify-center rounded-full bg-primary text-white hover:opacity-90"
+            className="flex h-9 w-9 cursor-pointer items-center justify-center rounded-full bg-primary text-white shadow-md shadow-primary/30 transition hover:-translate-x-0.5 hover:opacity-90"
           >
-            ←
+            <FiArrowLeft />
           </button>
           <button
             type="button"
             aria-label="Next"
             onClick={() => scroll(1)}
-            className="flex h-8 w-8 cursor-pointer items-center justify-center rounded-full border border-primary text-primary hover:bg-primary/10"
+            className="flex h-9 w-9 cursor-pointer items-center justify-center rounded-full border border-primary text-primary transition hover:translate-x-0.5 hover:bg-primary hover:text-white"
           >
-            →
+            <FiArrowRight />
           </button>
         </div>
       </div>

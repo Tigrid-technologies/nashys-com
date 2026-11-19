@@ -1,23 +1,36 @@
+import { FiArrowUpRight } from "react-icons/fi";
+import works1 from "../../assets/works1.jpg";
+import works2 from "../../assets/works2.jpg";
+import works3 from "../../assets/works3.jpg";
+import works4 from "../../assets/works4.jpg";
+
 interface WorkItem {
   id: number;
   src?: string; // to be populated dynamically
   alt: string;
 }
 
+// Static images for now; replace with data from the API later
 const topRow: WorkItem[] = [
-  { id: 1, alt: "Artwork 1" },
-  { id: 2, alt: "Artwork 2" },
+  { id: 1, src: works1, alt: "Artwork 1" },
+  { id: 2, src: works2, alt: "Artwork 2" },
 ];
 
 const bottomRow: WorkItem[] = [
-  { id: 3, alt: "Artwork 3" },
-  { id: 4, alt: "Artwork 4" },
+  { id: 3, src: works3, alt: "Artwork 3" },
+  { id: 4, src: works4, alt: "Artwork 4" },
 ];
 
 const Tile = ({ item, className }: { item: WorkItem; className: string }) => (
-  <div className={`overflow-hidden rounded-xl bg-gray-200 ${className}`}>
+  <div
+    className={`overflow-hidden rounded-2xl bg-gray-200 shadow-md transition-shadow duration-300 hover:shadow-xl ${className}`}
+  >
     {item.src && (
-      <img src={item.src} alt={item.alt} className="h-full w-full object-cover" />
+      <img
+        src={item.src}
+        alt={item.alt}
+        className="h-full w-full object-cover transition-transform duration-700 hover:scale-105"
+      />
     )}
   </div>
 );
@@ -26,8 +39,8 @@ const Works = () => {
   return (
     <section id="works" className="bg-white">
       <div className="mx-auto max-w-7xl px-6 py-8">
-        <p className="font-montserrat text-xs text-gray-800">Creative</p>
-        <h2 className="mt-2 font-cormorant text-2xl text-primary">
+        <p className="font-sans text-xs text-gray-800">Creative</p>
+        <h2 className="mt-2 font-roman text-3xl font-light tracking-tight text-primary">
           Let Our Work Do The Talking.
         </h2>
 
@@ -45,15 +58,13 @@ const Works = () => {
 
             <a
               href="#works"
-              className="relative flex h-56 flex-col items-center justify-end rounded-xl bg-primary p-4 md:h-64"
+              className="group relative flex h-56 flex-col items-center justify-end rounded-2xl bg-gradient-to-br from-primary to-[#4a0b0b] p-4 shadow-xl shadow-primary/25 transition-transform duration-300 hover:-translate-y-1 md:h-64"
             >
-              <span
+              <FiArrowUpRight
                 aria-hidden
-                className="absolute right-4 top-3 text-4xl font-light leading-none text-secondary"
-              >
-                ↗
-              </span>
-              <span className="rounded-full bg-secondary px-6 py-1.5 font-montserrat text-xs text-primary">
+                className="absolute right-4 top-4 text-4xl text-secondary transition-transform duration-300 group-hover:translate-x-1 group-hover:-translate-y-1"
+              />
+              <span className="rounded-full bg-secondary px-6 py-1.5 font-sans text-xs font-medium tracking-wide text-primary">
                 View All
               </span>
             </a>

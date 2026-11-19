@@ -35,7 +35,7 @@ const Card = ({ item, index }: { item: Testimonial; index: number }) => {
           repeat: Infinity,
           delay: index * 0.45,
         }}
-        className={`h-full rounded-lg border p-5 ${
+        className={`h-full min-h-[300px] rounded-2xl border p-5 shadow-lg ${
           filled
             ? "border-primary bg-primary text-white"
             : "border-primary/50 bg-white text-gray-700"
@@ -52,13 +52,13 @@ const Card = ({ item, index }: { item: Testimonial; index: number }) => {
             )}
           </div>
           <div className={filled ? "text-white" : "text-primary"}>
-            <p className="font-montserrat text-base leading-tight">
+            <p className="font-sans text-lg leading-tight">
               {item.name}
             </p>
-            <p className="font-montserrat text-[10px]">{item.role}</p>
+            <p className="font-sans font-light text-[12px]">{item.role}</p>
           </div>
         </div>
-        <p className="mt-6 font-montserrat text-[10px] leading-relaxed">
+        <p className="mt-6 font-sans text-[12px] leading-relaxed">
           {item.text}
         </p>
       </motion.div>
@@ -69,12 +69,12 @@ const Card = ({ item, index }: { item: Testimonial; index: number }) => {
 const Testimonials = () => {
   return (
     <section id="testimonials" className="overflow-hidden bg-white">
-      <div className="mx-auto max-w-7xl px-6 pt-8 font-montserrat">
+      <div className="mx-auto max-w-7xl px-6 pt-8 font-sans">
         <p className="text-sm text-gray-800">Testimonials</p>
-        <h2 className="mt-2 font-cormorant text-3xl text-primary">
+        <h2 className="mt-2 font-roman text-3xl font-light tracking-tight text-primary">
           Real Voices. Creative Journeys.
         </h2>
-        <p className="mt-3 max-w-xl text-[11px] leading-relaxed text-gray-700">
+        <p className="mt-3 max-w-2xl text-[14px] leading-relaxed text-gray-700">
           Hear It From Those Who Turned Their Creativity Into Beautiful
           Masterpieces! Discover How Our Texture Art Painting Workshop Inspired
           Creativity, Sparked Joy, And Created Unforgettable Artistic

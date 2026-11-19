@@ -11,7 +11,7 @@ const Founder = () => {
   return (
     <section
       id="founder"
-      className="bg-primary bg-cover bg-center text-white"
+      className="bg-primary bg-cover bg-left text-white"
       style={{ backgroundImage: `url(${founderBg})` }}
     >
       <div className="mx-auto grid max-w-7xl items-start gap-10 px-6 py-8 md:grid-cols-[minmax(0,1fr)_minmax(0,1.9fr)]">
@@ -21,18 +21,18 @@ const Founder = () => {
             alt="Nasheeda K T, founder"
             className="w-full object-cover"
           />
-          <span className="absolute bottom-4 right-3 rounded-full bg-white px-6 py-1.5 font-montserrat text-xs font-medium text-primary">
+          <span className="absolute bottom-4 right-3 rounded-full bg-white px-6 py-1.5 font-sans text-xs font-medium text-primary">
             Nasheeda K T
           </span>
         </div>
 
         <div>
-          <h2 className="font-cormorant text-4xl leading-tight md:text-5xl">
+          <h2 className="font-roman text-4xl font-light leading-tight tracking-tight md:text-5xl">
             Meet The Founder
             <br />
             Behind The Art.
           </h2>
-          <div className="mt-6 space-y-4 text-justify font-montserrat text-[11px] leading-relaxed">
+          <div className="mt-6 space-y-4 text-justify font-sans text-[14px] leading-relaxed">
             {paragraphs.map((p) => (
               <p key={p}>{p}</p>
             ))}

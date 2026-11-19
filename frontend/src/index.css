@@ -1,36 +1,35 @@
-@import url("https://fonts.googleapis.com/css2?family=Cairo:wght@200..1000&family=Tajawal:wght@200..900&display=swap");
 @import "tailwindcss";
 
 @custom-variant dark (&:where(.dark, .dark *));
 /* custom fonts */
 @font-face {
-  font-family: "Chewy";
-  src: url("/fonts/Chewy-Regular.ttf") format("truetype");
+  font-family: "Helvetica";
+  src: url("/fonts/HelveticaNeueLight.otf") format("truetype");
+  font-style: normal; 
+  font-weight: normal;
+  font-display: swap;
+}
+@font-face {
+  font-family: "NimbusRoman";
+  src: url("/fonts/NimbusRoman.otf") format("truetype");
   font-style: normal;
   font-weight: normal;
   font-display: swap;
 }
 @font-face {
-  font-family: "Montserrat";
-  src: url("/fonts/Montserrat-VariableFont_wght.ttf") format("truetype");
+  font-family: "NimbusSans";
+  src: url("/fonts/NimbusSans.otf") format("truetype");
   font-style: normal;
-  font-weight: 100 900;
-  font-display: swap;
-}
-@font-face {
-  font-family: "Cormorant Garamond";
-  src: url("/fonts/CormorantGaramond-VariableFont_wght.ttf") format("truetype");
-  font-style: normal;
-  font-weight: 300 700;
+  font-weight: normal;
   font-display: swap;
 }
 
 /* custom colors */
 @theme {
   /* fonts */
-  --font-chewy: "Chewy", sans-serif;
-  --font-montserrat: "Montserrat", sans-serif;
-  --font-cormorant: "Cormorant Garamond", sans-serif;
+  --font-helvetica: "Helvetica", sans-serif;
+  --font-roman: "NimbusRoman", sans-serif;
+  --font-sans: "NimbusSans", sans-serif;
 
   /* colors */
   --color-primary: #771313;
