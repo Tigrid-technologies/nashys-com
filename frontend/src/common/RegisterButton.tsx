@@ -1,4 +1,5 @@
 import { Link } from "react-router-dom";
+import { motion } from "motion/react";
 import { FiArrowUpRight } from "react-icons/fi";
 
 type Variant = "primary" | "light" | "cream";
@@ -31,17 +32,29 @@ const RegisterButton = ({
 }: Props) => {
   const s = styles[variant];
   return (
-    <Link
-      to={to}
-      className={`group inline-flex items-center gap-3 rounded-full py-1.5 pl-5 pr-1.5 font-sans text-xs font-medium tracking-wide transition-all duration-300 hover:-translate-y-0.5 ${s.button}`}
+    <motion.div
+      animate={{ y: [0, -6, 0] }}
+      transition={{
+        duration: 1.8,
+        repeat: Infinity,
+        ease: "easeInOut",
+      }}
+      whileHover={{ scale: 1.04 }}
+      whileTap={{ scale: 0.97 }}
+      className="inline-block"
     >
-      {label}
-      <span
-        className={`flex h-6 w-6 items-center justify-center rounded-full border text-sm transition-colors duration-300 ${s.icon}`}
+      <Link
+        to={to}
+        className={`group inline-flex items-center gap-3 rounded-full py-1.5 pl-5 pr-1.5 font-sans text-xs font-medium tracking-wide transition-shadow duration-300 hover:shadow-xl ${s.button}`}
       >
-        <FiArrowUpRight />
-      </span>
-    </Link>
+        {label}
+        <span
+          className={`flex h-6 w-6 items-center justify-center rounded-full border text-sm transition-colors duration-300 ${s.icon}`}
+        >
+          <FiArrowUpRight />
+        </span>
+      </Link>
+    </motion.div>
   );
 };
 

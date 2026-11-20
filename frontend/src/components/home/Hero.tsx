@@ -1,89 +1,244 @@
+import { motion } from "motion/react";
 import { FaPlay } from "react-icons/fa6";
 import RegisterButton from "../../common/RegisterButton";
-import Reveal from "../../common/Reveal";
 import image from "../../assets/hero-image.png";
 
+const ease = [0.22, 1, 0.36, 1] as const;
+
+const WordReveal = ({
+  text,
+  className,
+  delay = 0,
+  stagger = 0.035,
+}: {
+  text: string;
+  className?: string;
+  delay?: number;
+  stagger?: number;
+}) => {
+  const words = text.split(" ");
+  return (
+    <motion.span
+      initial="hidden"
+      whileInView="visible"
+      viewport={{ once: true, amount: 0.3 }}
+      variants={{
+        hidden: {},
+        visible: {
+          transition: { staggerChildren: stagger, delayChildren: delay },
+        },
+      }}
+      className={className}
+    >
+      {words.map((word, i) => (
+        <motion.span
+          key={`${word}-${i}`}
+          variants={{
+            hidden: { opacity: 0, y: 10 },
+            visible: {
+              opacity: 1,
+              y: 0,
+              transition: { duration: 0.4, ease },
+            },
+          }}
+          className="inline-block"
+        >
+          {word}
+          {i < words.length - 1 ? "\u00A0" : ""}
+        </motion.span>
+      ))}
+    </motion.span>
+  );
+};
+
 const ShowreelButton = () => (
-  <button
+  <motion.button
     type="button"
+    whileHover={{ scale: 1.05 }}
+    whileTap={{ scale: 0.96 }}
     className="absolute bottom-3 left-3 flex cursor-pointer items-center gap-2 rounded-full border border-white/30 bg-white/20 py-1.5 pl-2 pr-4 font-sans text-[10px] text-white backdrop-blur-md transition hover:bg-white/30"
   >
-    <span className="flex h-5 w-5 items-center justify-center rounded-full bg-primary text-[8px]">
-      <FaPlay className="ml-px" />
+    <span className="relative flex h-5 w-5 items-center justify-center rounded-full bg-primary text-[8px]">
+      <motion.span
+        aria-hidden
+        animate={{ scale: [1, 1.8, 1.8], opacity: [0.7, 0, 0] }}
+        transition={{ duration: 2, repeat: Infinity, ease: "easeOut" }}
+        className="absolute inset-0 rounded-full bg-white/60"
+      />
+      <FaPlay className="relative ml-px" />
     </span>
     Watch Showreel
-  </button>
+  </motion.button>
 );
 
 const Hero = () => {
   return (
-    <section className="bg-secondary h-screen">
-      <div className="mx-auto grid max-w-7xl items-start gap-6 px-6 py-12 md:grid-cols-[1fr_1.2fr]">
-        {/* Left: headline */}
-        <Reveal direction="left" className="mt-10">
-          <h1 className="font-roman text-5xl font-light leading-[1.05] tracking-tight text-primary md:text-7xl">
-            Crafted Textures.
-            <br />
-            Defining Spaces.
+    <section className="relative overflow-hidden bg-secondary md:min-h-[calc(100vh-72px)]">
+      {/* Subtle drifting ambient glows */}
+      <motion.div
+        aria-hidden
+        animate={{ x: [0, 30, 0], y: [0, -20, 0], scale: [1, 1.08, 1] }}
+        transition={{ duration: 12, repeat: Infinity, ease: "easeInOut" }}
+        className="pointer-events-none absolute -left-24 -top-24 h-80 w-80 rounded-full bg-primary/10 blur-3xl"
+      />
+      <motion.div
+        aria-hidden
+        animate={{ x: [0, -25, 0], y: [0, 25, 0], scale: [1, 1.12, 1] }}
+        transition={{ duration: 15, repeat: Infinity, ease: "easeInOut" }}
+        className="pointer-events-none absolute -bottom-24 right-1/4 h-96 w-96 rounded-full bg-tertiary/40 blur-3xl"
+      />
+
+      <div className="relative mx-auto grid max-w-7xl items-start gap-8 px-5 py-8 sm:px-6 md:grid-cols-[1fr_1.2fr] md:gap-6 md:py-12">
+        {/* Left: editorial staggered headline */}
+        <div className="mt-2 md:mt-10">
+          <h1 className="font-roman font-light leading-[1.08] tracking-tight text-primary text-5xl md:text-7xl">
+            <span className="block overflow-hidden pb-1">
+              <motion.span
+                initial={{ y: "100%", opacity: 0 }}
+                animate={{ y: 0, opacity: 1 }}
+                transition={{ duration: 0.75, ease }}
+                className="block"
+              >
+                Crafted Textures.
+              </motion.span>
+            </span>
+            <span className="block overflow-hidden pb-1">
+              <motion.span
+                initial={{ y: "100%", opacity: 0 }}
+                animate={{ y: 0, opacity: 1 }}
+                transition={{ duration: 0.75, delay: 0.14, ease }}
+                className="block"
+              >
+                Defining Spaces.
+              </motion.span>
+            </span>
           </h1>
-          <p className="mt-5 font-sans text-sm tracking-wide text-gray-700">
+
+          {/* Animated accent line */}
+          <motion.span
+            initial={{ scaleX: 0 }}
+            animate={{ scaleX: 1 }}
+            transition={{ duration: 0.7, delay: 0.3, ease }}
+            className="mt-5 block h-0.5 w-20 origin-left bg-primary/60"
+          />
+
+          <motion.p
+            initial={{ opacity: 0, y: 16 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.65, delay: 0.35, ease }}
+            className="mt-4 font-sans text-sm tracking-wide text-gray-700 md:mt-5"
+          >
             More Than Just A Painting, It&apos;s The ART That Breaths,
-          </p>
-          <div className="mt-7">
+          </motion.p>
+
+          <motion.div
+            initial={{ opacity: 0, y: 16 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.65, delay: 0.48, ease }}
+            className="mt-7 hidden md:block"
+          >
             <RegisterButton variant="primary" />
-          </div>
-        </Reveal>
+          </motion.div>
+        </div>
 
         {/* Right: workshop card */}
-        <Reveal
-          direction="right"
-          delay={0.15}
-          className="rounded-2xl bg-gradient-to-br from-primary via-primary to-[#4a0b0b] p-6 text-white shadow-2xl shadow-primary/30 ring-1 ring-white/10"
+        <motion.div
+          initial={{ opacity: 0, x: 40, scale: 0.98 }}
+          animate={{ opacity: 1, x: 0, scale: 1 }}
+          transition={{ duration: 0.8, delay: 0.18, ease }}
+          whileHover={{ y: -4 }}
+          className="relative overflow-hidden rounded-3xl bg-gradient-to-br from-primary via-primary to-[#4a0b0b] p-5 text-white shadow-2xl shadow-primary/30 ring-1 ring-white/10 transition-shadow duration-500 hover:shadow-primary/40 sm:p-6"
         >
-          <div className="grid gap-5 md:grid-cols-[1fr_1.6fr]">
+          {/* Subtle top-right highlight */}
+          <div
+            aria-hidden
+            className="pointer-events-none absolute -right-16 -top-16 h-48 w-48 rounded-full bg-white/10 blur-2xl"
+          />
+
+          <div className="relative grid gap-5 md:grid-cols-[1fr_1.6fr]">
             <div className="font-sans">
               <p className="text-[11px] uppercase leading-snug tracking-[0.18em] text-white/70">
-                Beginner Texture Art
+                <WordReveal text="Beginner Texture Art" delay={0.1} stagger={0.05} />
                 <br />
-                Mini-Workshop
+                <WordReveal text="Mini-Workshop" delay={0.25} stagger={0.05} />
               </p>
-              <h2 className="mt-4 font-roman text-2xl font-light leading-snug">
-                Three Hours.
-                <br />A Piece Of Your Own.
+              <h2 className="mt-3 font-roman text-2xl font-light leading-snug md:mt-4">
+                <WordReveal text="Three Hours." delay={0.2} stagger={0.07} />
+                <br />
+                <WordReveal text="A Piece Of Your Own." delay={0.35} stagger={0.06} />
               </h2>
-              <p className="mt-4 text-[11px] leading-relaxed text-white/85">
-                Make Time For A Little Creativity In Kochi. Learn Texture Art
-                Basics And Two Design Techniques As You Create A Landscape
-                Painting On A 12 ×16 Inch Canvas.
+              <p className="mt-3 text-[11px] leading-relaxed text-white/85 md:mt-4">
+                <WordReveal
+                  text="Make Time For A Little Creativity In Kochi. Learn Texture Art Basics And Two Design Techniques As You Create A Landscape Painting On A 12 ×16 Inch Canvas."
+                  delay={0.3}
+                  stagger={0.025}
+                />
               </p>
             </div>
 
-            <div className="relative min-h-[230px] w-full aspect-video overflow-hidden rounded-xl bg-black/40 shadow-lg ring-1 ring-white/10">
-              <img src={image} alt="Play" className="align-top" />
+            <motion.div
+              initial={{ opacity: 0, scale: 0.95 }}
+              animate={{ opacity: 1, scale: 1 }}
+              transition={{ duration: 0.7, delay: 0.4, ease }}
+              className="relative aspect-video min-h-[200px] w-full overflow-hidden rounded-3xl bg-black/40 shadow-lg ring-1 ring-white/10 md:min-h-[230px]"
+            >
+              {/* Slow Ken Burns zoom */}
+              <motion.img
+                src={image}
+                alt="Texture art workshop preview"
+                animate={{ scale: [1, 1.07, 1] }}
+                transition={{
+                  duration: 14,
+                  repeat: Infinity,
+                  ease: "easeInOut",
+                }}
+                className="h-full w-full object-cover object-top"
+              />
               <ShowreelButton />
-            </div>
+            </motion.div>
           </div>
 
-          <hr className="my-6 border-white/25" />
+          <motion.hr
+            initial={{ scaleX: 0 }}
+            animate={{ scaleX: 1 }}
+            transition={{ duration: 0.7, delay: 0.5, ease }}
+            className="my-5 origin-left border-white/25 md:my-6"
+          />
 
-          <h2 className="font-roman text-4xl font-light tracking-tight">
-            Texture Art Painting Online Workshop
-          </h2>
-          <p className="mt-3 font-sans text-[12px] leading-relaxed text-white/85">
-            Texture Art Painting Is A Beautiful And Expressive Art Form That
-            Allows Us To Create Stunning Pieces Using Textures, Layers,
-            Patterns, And Creativity — And Today, Learning
-          </p>
-          <p className="mt-3 font-sans text-[12px] leading-relaxed text-white/85">
-            Texture Art Painting Is A Beautiful And Expressive Art Form That
-            Allows Us To Create Stunning Pieces Using Textures, Layers,
-            Patterns, And Creativity — And Today, Learning It Online Is Easier
-            And More Interactive Than Ever Before.
-          </p>
-          <div className="mt-6">
-            <RegisterButton variant="light" />
+          <div>
+            <h2 className="font-roman text-2xl font-light tracking-tight sm:text-3xl md:text-4xl">
+              <WordReveal
+                text="Texture Art Painting Online Workshop"
+                delay={0.1}
+                stagger={0.06}
+              />
+            </h2>
+            <p className="mt-3 font-sans text-[12px] leading-relaxed text-white/85">
+              <WordReveal
+                text="Texture Art Painting Is A Beautiful And Expressive Art Form That Allows Us To Create Stunning Pieces Using Textures, Layers, Patterns, And Creativity — And Today, Learning"
+                delay={0.2}
+                stagger={0.025}
+              />
+            </p>
+            <p className="mt-3 font-sans text-[12px] leading-relaxed text-white/85">
+              <WordReveal
+                text="Texture Art Painting Is A Beautiful And Expressive Art Form That Allows Us To Create Stunning Pieces Using Textures, Layers, Patterns, And Creativity — And Today, Learning It Online Is Easier And More Interactive Than Ever Before."
+                delay={0.4}
+                stagger={0.022}
+              />
+            </p>
+            <motion.div
+              initial={{ opacity: 0, y: 14 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              viewport={{ once: true, amount: 0.4 }}
+              transition={{ duration: 0.55, delay: 0.55, ease }}
+              className="mt-6"
+            >
+              <RegisterButton variant="light" />
+            </motion.div>
           </div>
-        </Reveal>
+        </motion.div>
+
       </div>
     </section>
   );

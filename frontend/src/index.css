@@ -1,24 +1,19 @@
+@import url("https://fonts.googleapis.com/css2?family=Noto+Sans:ital,wght@0,100..900;1,100..900&display=swap");
 @import "tailwindcss";
 
 @custom-variant dark (&:where(.dark, .dark *));
+
 /* custom fonts */
 @font-face {
   font-family: "Helvetica";
-  src: url("/fonts/HelveticaNeueLight.otf") format("truetype");
-  font-style: normal; 
-  font-weight: normal;
-  font-display: swap;
-}
-@font-face {
-  font-family: "NimbusRoman";
-  src: url("/fonts/NimbusRoman.otf") format("truetype");
+  src: url("/fonts/HelveticaNeueLight.otf") format("opentype");
   font-style: normal;
   font-weight: normal;
   font-display: swap;
 }
 @font-face {
-  font-family: "NimbusSans";
-  src: url("/fonts/NimbusSans.otf") format("truetype");
+  font-family: "NimbusRoman";
+  src: url("/fonts/NimbusRoman.otf") format("opentype");
   font-style: normal;
   font-weight: normal;
   font-display: swap;
@@ -29,10 +24,21 @@
   /* fonts */
   --font-helvetica: "Helvetica", sans-serif;
   --font-roman: "NimbusRoman", sans-serif;
-  --font-sans: "NimbusSans", sans-serif;
+  --font-sans: "Noto Sans", sans-serif;
 
   /* colors */
   --color-primary: #771313;
-  --color-secondary: #EDE8D0;
-  --color-tertiary: #FFF1AC;
+  --color-secondary: #ede8d0;
+  --color-tertiary: #fff1ac;
+}
+
+@layer base {
+  body {
+    font-family: var(--font-sans);
+    font-optical-sizing: auto;
+  }
+}
+
+.button {
+  cursor: pointer;
 }
