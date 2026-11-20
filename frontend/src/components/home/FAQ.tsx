@@ -161,7 +161,7 @@ const FAQ = () => {
                 }}
                 className="h-full w-full object-cover"
               />
-              <motion.div
+              {/* <motion.div
                 animate={{ y: [0, -4, 0] }}
                 transition={{
                   duration: 4,
@@ -172,7 +172,7 @@ const FAQ = () => {
               >
                 <FiMapPin className="text-xs text-tertiary" />
                 Offline Studio • Kochi
-              </motion.div>
+              </motion.div> */}
             </div>
 
             <div className="relative mt-5">
