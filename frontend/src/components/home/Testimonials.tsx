@@ -1,7 +1,7 @@
 import { useRef } from "react";
 import { motion } from "motion/react";
 import { FaQuoteRight, FaStar } from "react-icons/fa6";
-import { FiArrowLeft, FiArrowRight, FiMessageCircle } from "react-icons/fi";
+import { FiMessageCircle } from "react-icons/fi";
 import RegisterButton from "../../common/RegisterButton";
 import Reveal from "../../common/Reveal";
 
@@ -123,12 +123,6 @@ const Card = ({ item, index }: { item: Testimonial; index: number }) => {
 
 const Testimonials = () => {
   const trackRef = useRef<HTMLDivElement>(null);
-
-  const scroll = (direction: 1 | -1) => {
-    const el = trackRef.current;
-    if (!el) return;
-    el.scrollBy({ left: direction * (el.clientWidth * 0.85), behavior: "smooth" });
-  };
 
   return (
     <section id="testimonials" className="overflow-hidden bg-white">

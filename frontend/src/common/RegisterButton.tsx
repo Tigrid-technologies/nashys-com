@@ -28,7 +28,7 @@ interface Props {
 const RegisterButton = ({
   label = "Register Now",
   variant = "primary",
-  to = "/contact",
+  to = "/contact#register-form",
 }: Props) => {
   const s = styles[variant];
   return (

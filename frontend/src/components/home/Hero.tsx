@@ -1,9 +1,36 @@
+import { useEffect, useState } from "react";
 import { motion } from "motion/react";
-import { FaPlay } from "react-icons/fa6";
+import { FaPlay, FaStar } from "react-icons/fa6";
+import { FiCalendar, FiClock } from "react-icons/fi";
+import { MdAlarm, MdEventSeat } from "react-icons/md";
 import RegisterButton from "../../common/RegisterButton";
 import image from "../../assets/hero-image.png";
 
 const ease = [0.22, 1, 0.36, 1] as const;
+
+const OFFER_ENDS_AT = new Date("2026-11-24T10:00:00+05:30");
+const SEATS_TOTAL = 11;
+const SEATS_TAKEN = 9;
+
+const pad = (n: number) => String(n).padStart(2, "0");
+
+const useCountdown = (target: Date) => {
+  const [now, setNow] = useState(() => Date.now());
+
+  useEffect(() => {
+    const timer = setInterval(() => setNow(Date.now()), 1000);
+    return () => clearInterval(timer);
+  }, []);
+
+  const diff = Math.max(0, target.getTime() - now);
+  const s = Math.floor(diff / 1000);
+  return {
+    days: Math.floor(s / 86400),
+    hours: Math.floor((s % 86400) / 3600),
+    minutes: Math.floor((s % 3600) / 60),
+    seconds: s % 60,
+  };
+};
 
 const WordReveal = ({
   text,
@@ -72,8 +99,13 @@ const ShowreelButton = () => (
 );
 
 const Hero = () => {
+  const { days, hours, minutes, seconds } = useCountdown(OFFER_ENDS_AT);
+
   return (
-    <section className="relative overflow-hidden bg-secondary md:min-h-[calc(100vh-72px)]">
+    <section
+      id="hero"
+      className="relative overflow-hidden bg-secondary md:min-h-[calc(100vh-72px)]"
+    >
       {/* Subtle drifting ambient glows */}
       <motion.div
         aria-hidden
@@ -99,7 +131,7 @@ const Hero = () => {
                 transition={{ duration: 0.75, ease }}
                 className="block"
               >
-                Crafted Textures.
+                Master the Art 
               </motion.span>
             </span>
             <span className="block overflow-hidden pb-1">
@@ -109,7 +141,7 @@ const Hero = () => {
                 transition={{ duration: 0.75, delay: 0.14, ease }}
                 className="block"
               >
-                Defining Spaces.
+                Painting Techniques in 3 hrs.
               </motion.span>
             </span>
           </h1>
@@ -205,36 +237,111 @@ const Hero = () => {
             className="my-5 origin-left border-white/25 md:my-6"
           />
 
-          <div>
-            <h2 className="font-roman text-2xl font-light tracking-tight sm:text-3xl md:text-4xl">
-              <WordReveal
-                text="Texture Art Painting Online Workshop"
-                delay={0.1}
-                stagger={0.06}
-              />
-            </h2>
-            <p className="mt-3 font-sans text-[12px] leading-relaxed text-white/85">
-              <WordReveal
-                text="Texture Art Painting Is A Beautiful And Expressive Art Form That Allows Us To Create Stunning Pieces Using Textures, Layers, Patterns, And Creativity — And Today, Learning"
-                delay={0.2}
-                stagger={0.025}
-              />
-            </p>
-            <p className="mt-3 font-sans text-[12px] leading-relaxed text-white/85">
-              <WordReveal
-                text="Texture Art Painting Is A Beautiful And Expressive Art Form That Allows Us To Create Stunning Pieces Using Textures, Layers, Patterns, And Creativity — And Today, Learning It Online Is Easier And More Interactive Than Ever Before."
-                delay={0.4}
-                stagger={0.022}
-              />
-            </p>
+          <div className="grid items-start gap-5 sm:grid-cols-[1fr_1.15fr]">
+            {/* Left: workshop highlight pills + register button */}
+            <div className="flex flex-col items-start gap-2.5 font-sans">
+              <motion.div
+                initial={{ opacity: 0, y: 12 }}
+                whileInView={{ opacity: 1, y: 0 }}
+                viewport={{ once: true, amount: 0.3 }}
+                transition={{ duration: 0.45, delay: 0.1, ease }}
+                className="inline-flex items-center gap-2 rounded-xl bg-white px-3.5 py-2 text-[11px] font-semibold tracking-wide text-primary shadow-sm"
+              >
+                <FiCalendar className="shrink-0 text-sm" />
+                24TH NOV 2026 • 10 AM IST
+              </motion.div>
+
+              <motion.div
+                initial={{ opacity: 0, y: 12 }}
+                whileInView={{ opacity: 1, y: 0 }}
+                viewport={{ once: true, amount: 0.3 }}
+                transition={{ duration: 0.45, delay: 0.18, ease }}
+                className="inline-flex items-center gap-2 rounded-xl bg-white px-3.5 py-2 text-[11px] font-semibold tracking-wide text-primary shadow-sm"
+              >
+                <FiClock className="shrink-0 text-sm" />
+                3 HOURS OF TRAINING
+              </motion.div>
+
+              <motion.div
+                initial={{ opacity: 0, y: 12 }}
+                whileInView={{ opacity: 1, y: 0 }}
+                viewport={{ once: true, amount: 0.3 }}
+                transition={{ duration: 0.45, delay: 0.26, ease }}
+                className="inline-flex items-center gap-2 rounded-xl bg-white px-3.5 py-2 text-[11px] font-semibold tracking-wide text-primary shadow-sm"
+              >
+                <FaStar className="shrink-0 text-xs text-amber-500" />
+                RATED 4.7/5 BY 1000+ LEARNERS
+              </motion.div>
+
+              <motion.div
+                initial={{ opacity: 0, y: 14 }}
+                whileInView={{ opacity: 1, y: 0 }}
+                viewport={{ once: true, amount: 0.3 }}
+                transition={{ duration: 0.5, delay: 0.35, ease }}
+                className="mt-3"
+              >
+                <RegisterButton variant="cream" />
+              </motion.div>
+            </div>
+
+            {/* Right: limited slots & offer value card */}
             <motion.div
-              initial={{ opacity: 0, y: 14 }}
+              initial={{ opacity: 0, y: 16 }}
               whileInView={{ opacity: 1, y: 0 }}
-              viewport={{ once: true, amount: 0.4 }}
-              transition={{ duration: 0.55, delay: 0.55, ease }}
-              className="mt-6"
+              viewport={{ once: true, amount: 0.3 }}
+              transition={{ duration: 0.55, delay: 0.25, ease }}
+              className="rounded-2xl bg-secondary p-4 text-primary shadow-lg ring-1 ring-white/20"
+              style={{
+                backgroundImage:
+                  "radial-gradient(rgba(119, 19, 19, 0.1) 1px, transparent 1px)",
+                backgroundSize: "12px 12px",
+              }}
             >
-              <RegisterButton variant="light" />
+              <p className="flex items-center gap-1.5 font-sans text-xs font-bold leading-snug text-primary">
+                <MdAlarm className="shrink-0 text-base text-primary" />
+                Limited Slots Available: Only 25 Slots Left!
+              </p>
+
+              {/* Seat availability row */}
+              <div
+                className="mt-2.5 flex flex-wrap items-center gap-1"
+                aria-label={`${SEATS_TAKEN} of ${SEATS_TOTAL} seats filled`}
+              >
+                {Array.from({ length: SEATS_TOTAL }, (_, i) => (
+                  <MdEventSeat
+                    key={i}
+                    className={`text-lg ${
+                      i < SEATS_TAKEN ? "text-primary" : "text-primary/30"
+                    }`}
+                  />
+                ))}
+              </div>
+
+              {/* Value & Free offer */}
+              <div className="mt-3 border-t border-primary/15 pt-3 font-sans">
+                <p className="text-xs text-gray-700">
+                  Total Value:{" "}
+                  <span className="font-bold text-primary line-through">
+                    ₹4,999
+                  </span>
+                </p>
+                <p className="mt-0.5 text-[11px] text-gray-600">
+                  Today You Can Get It For
+                </p>
+                <p className="mt-0.5 font-roman text-3xl font-semibold leading-none tracking-wide text-primary">
+                  FREE
+                </p>
+              </div>
+
+              {/* Live countdown */}
+              <div className="mt-3 border-t border-primary/15 pt-2.5 font-sans">
+                <p className="text-[11px] text-gray-600">
+                  This special offer ends in
+                </p>
+                <p className="mt-0.5 text-sm font-bold tabular-nums tracking-wide text-primary">
+                  {pad(days)}d : {pad(hours)}h : {pad(minutes)}m : {pad(seconds)}s
+                </p>
+              </div>
             </motion.div>
           </div>
         </motion.div>

@@ -59,6 +59,40 @@ const About = () => {
             </motion.div>
           </div>
         </Reveal>
+        {/* Stats */}
+        <Reveal
+          direction="up"
+          delay={0.1}
+          className="mx-auto md:max-w-7xl md:hidden"
+        >
+          <ul className="grid grid-cols-3 gap-4">
+            {stats.map((s, i) => (
+              <motion.li
+                key={s.label}
+                initial={{ opacity: 0, y: 20 }}
+                whileInView={{ opacity: 1, y: 0 }}
+                viewport={{ once: true, amount: 0.4 }}
+                transition={{ duration: 0.6, delay: i * 0.12, ease }}
+                whileHover={{ y: -4 }}
+                className={`py-2 pl-3 sm:pl-6 md:pl-12 ${
+                  i > 0 ? "border-l border-gray-300" : ""
+                }`}
+              >
+                <p className="flex items-center font-roman text-4xl leading-none text-primary sm:text-5xl md:text-8xl">
+                  <CountUp value={s.value} />
+                  {s.suffix && (
+                    <span className="ml-1 text-2xl font-medium sm:text-3xl md:text-5xl">
+                      {s.suffix}
+                    </span>
+                  )}
+                </p>
+                <p className="mt-3 max-w-[6rem] font-sans text-xs leading-snug text-gray-600 sm:mt-4 md:text-[14px]">
+                  {s.label}
+                </p>
+              </motion.li>
+            ))}
+          </ul>
+        </Reveal>
 
         <Reveal direction="right" delay={0.15} className="md:pl-6">
           <p className="font-sans text-xs uppercase tracking-[0.2em] text-primary/70">
@@ -67,6 +101,7 @@ const About = () => {
           <h3 className="mt-2 font-roman text-3xl text-primary">
             Welcome To Our Workshop
           </h3>
+
           <motion.span
             initial={{ scaleX: 0 }}
             whileInView={{ scaleX: 1 }}
@@ -91,7 +126,11 @@ const About = () => {
       </div>
 
       {/* Stats */}
-      <Reveal direction="up" delay={0.1} className="mx-auto max-w-7xl px-6 pb-12">
+      <Reveal
+        direction="up"
+        delay={0.1}
+        className="mx-auto max-w-7xl px-6 pb-12 hidden md:block"
+      >
         <ul className="grid grid-cols-3">
           {stats.map((s, i) => (
             <motion.li

@@ -1,6 +1,6 @@
 import { useState } from "react";
 import { motion } from "motion/react";
-import { FiHelpCircle, FiMapPin, FiMinus, FiPlus } from "react-icons/fi";
+import { FiHelpCircle, FiMinus, FiPlus } from "react-icons/fi";
 import faqImage from "../../assets/faq-card.jpg";
 import RegisterButton from "../../common/RegisterButton";
 import Reveal from "../../common/Reveal";

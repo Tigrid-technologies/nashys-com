@@ -2,17 +2,21 @@ import { Outlet, useLocation } from "react-router-dom";
 import { useEffect } from "react";
 import Header from "../common/Header";
 import Footer from "../common/Footer";
+import StickyRegisterBar from "../common/StickyRegisterBar";
 
 const MainLayout = () => {
   const { pathname, hash } = useLocation();
 
   useEffect(() => {
     if (hash) {
-      const el = document.getElementById(hash.slice(1));
-      if (el) {
-        el.scrollIntoView({ behavior: "smooth" });
-        return;
-      }
+      const id = hash.slice(1);
+      const frame = requestAnimationFrame(() => {
+        const el = document.getElementById(id);
+        if (el) {
+          el.scrollIntoView({ behavior: "smooth" });
+        }
+      });
+      return () => cancelAnimationFrame(frame);
     }
     window.scrollTo(0, 0);
   }, [pathname, hash]);
@@ -24,6 +28,7 @@ const MainLayout = () => {
         <Outlet />
       </main>
       <Footer />
+      <StickyRegisterBar />
     </div>
   );
 };

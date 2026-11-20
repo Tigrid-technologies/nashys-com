@@ -183,11 +183,12 @@ const Contact = () => {
           </Reveal>
 
           {/* Right: Registration / Enquiry Form */}
-          <Reveal
-            direction="right"
-            delay={0.15}
-            className="rounded-2xl border border-primary/15 bg-secondary/35 p-6 shadow-lg shadow-primary/5 md:p-8"
-          >
+          <div id="register-form" className="scroll-mt-24">
+            <Reveal
+              direction="right"
+              delay={0.15}
+              className="rounded-2xl border border-primary/15 bg-secondary/35 p-6 shadow-lg shadow-primary/5 md:p-8"
+            >
             {submitted ? (
               <div className="flex flex-col items-center py-12 text-center">
                 <span className="flex h-14 w-14 items-center justify-center rounded-full bg-primary/10 text-3xl text-primary">
@@ -348,7 +349,8 @@ const Contact = () => {
                 </form>
               </>
             )}
-          </Reveal>
+            </Reveal>
+          </div>
         </div>
       </section>
     </div>
