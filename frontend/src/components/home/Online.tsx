@@ -1,6 +1,6 @@
 import { motion } from "motion/react";
-import { FaPlay } from "react-icons/fa6";
-import { FiVideo, FiUsers, FiLayers } from "react-icons/fi";
+import { FaPlay, FaRegHandshake } from "react-icons/fa6";
+import { FiUsers, FiLayers } from "react-icons/fi";
 import onlineImage from "../../assets/online-image.png";
 import RegisterButton from "../../common/RegisterButton";
 import Reveal from "../../common/Reveal";
@@ -8,7 +8,7 @@ import Reveal from "../../common/Reveal";
 const ease = [0.22, 1, 0.36, 1] as const;
 
 const highlights = [
-  { label: "Live Guided Demos", Icon: FiVideo },
+  { label: "Lifetime Community Access", Icon: FaRegHandshake },
   { label: "Interactive Q&A", Icon: FiUsers },
   { label: "Beginner Friendly", Icon: FiLayers },
 ];

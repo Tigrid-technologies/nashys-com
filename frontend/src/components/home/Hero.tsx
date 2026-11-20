@@ -329,7 +329,7 @@ const Hero = () => {
                   Today You Can Get It For
                 </p>
                 <p className="mt-0.5 font-roman text-3xl font-semibold leading-none tracking-wide text-primary">
-                  FREE
+                  ₹2,500
                 </p>
               </div>
 

@@ -48,7 +48,7 @@ const StickyRegisterBar = () => {
             <div className="min-w-0 font-sans">
               <div className="flex items-baseline gap-2">
                 <span className="font-roman text-xl font-semibold leading-none tracking-wide text-primary sm:text-2xl">
-                  FREE
+                  ₹2,500
                 </span>
                 <span className="text-sm font-medium text-primary/65 line-through sm:text-base">
                   ₹4,999
@@ -77,8 +77,7 @@ const StickyRegisterBar = () => {
               >
                 <span>
                   Register now for{" "}
-                  <span className="text-secondary/80 line-through">₹4,999</span>{" "}
-                  <span className="text-tertiary">Free</span>
+                  <span className="text-tertiary">₹2,500</span>
                 </span>
                 <span className="flex h-6 w-6 items-center justify-center rounded-full border border-white/50 bg-white/15 text-sm transition-colors duration-300 group-hover:bg-white group-hover:text-primary sm:h-7 sm:w-7">
                   <FiArrowUpRight />
